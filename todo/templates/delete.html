@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <article>
+        <header>Success</header>
+        {{ task.name }} was deleted from your list of Todos!
+        <footer>Task Date: {{ task.date }}</footer>
+    </article>
+{% endblock %}

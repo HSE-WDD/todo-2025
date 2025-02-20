@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if task %}
+        <h2>Edit Task</h2>
+        <form action="/update" method="post">
+    {% else %}
+        <h2>Add a new Task</h2>
+        <form action="/add" method="post">
+    {% endif %}
+    <div class="grid">
+
+        <input type="text" autocomplete="off" autofocus placeholder="Enter you task" name="task" id="task" {% if task %}value="{{ task.name }}" {% endif %}>
+
+        <input type="date" name="task-date" id="task-date" value="{{ today }}">
+    </div>
+    <select name="task-priority" id="task-priority">
+        <option disabled selected>Priority</option>
+        {% if task %}
+            <option value="high"
+            {% if task.priority=="high" %}selected{% endif %}>High</option>
+            <option value="normal"
+            {% if task.priority=="normal" %}selected{% endif %}>Normal</option>
+            <option value="low"
+            {% if task.priority=="low" %}selected{% endif %}>Low</option>
+        {% else %}
+            <option value="high">High</option>
+            <option value="normal">Normal</option>
+            <option value="low">Low</option>
+        {% endif %}
+    </select>
+    {% if task %}
+        <button type="submit">Update Task</button>
+    {% else %}
+        <button type="submit">Add Task</button>
+    {% endif %}
+    </form>
+
+{% endblock %}
